@@ -168,6 +168,8 @@
 # - #each_line(*args, &block)
 # - #read(*args)
 # - #binread(*args)
+# - #write(*args)
+# - #binwrite(*args)
 # - #readlines(*args)
 # - #sysopen(*args)
 #
@@ -778,6 +780,12 @@ class Pathname    # * IO *
   # See <tt>IO.binread</tt>.  Returns all the bytes from the file, or the first +N+
   # if specified.
   def binread(*args) IO.binread(@path, *args) end
+
+  # See <tt>IO.write</tt>.  Returns the number of bytes written to the file.
+  def write(*args) IO.write(@path, *args) end
+
+  # See <tt>IO.binwrite</tt>.  Returns the number of bytes written to the file.
+  def binwrite(*args) IO.binwrite(@path, *args) end
 
   # See <tt>IO.readlines</tt>.  Returns all the lines from the file.
   def readlines(*args) IO.readlines(@path, *args) end
