@@ -1058,4 +1058,8 @@ module Kernel
     Pathname.new(path)
   end
   private :Pathname
+
+  def self.Pathname(path)
+    Pathname.new(path)
+  end
 end
