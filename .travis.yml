@@ -1,14 +1,12 @@
 language: ruby
 env:
-  - RUBYLIB=lib
-  - RUBYLIB=
+  - RUBYLIB=lib:.
 script: mspec spec
+branches:
+  only:
+    - 1.0
+    - 2.0
 rvm:
-  - 2.0.0
-  - rbx-2.2.1
-matrix:
-  exclude:
-    - rvm: 2.0.0
-      env: RUBYLIB=lib
-    - rvm: rbx-2.2.1
-      env: RUBYLIB=
+  - 2.1.0
+  - rbx-2
+
