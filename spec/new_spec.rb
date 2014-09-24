@@ -14,5 +14,18 @@ describe "Pathname.new" do
     Pathname.new(path).tainted?.should == true
   end
 
+  it "calls #to_str to convert the argument to a String" do
+    obj = mock("to_str")
+    obj.should_receive(:to_str).and_return("/")
+
+    Pathname.new(obj).should == Pathname.new('/')
+  end
+
+  it "calls #to_path to convert the argument to a String" do
+    obj = mock("to_path")
+    obj.should_receive(:to_path).and_return("/")
+
+    Pathname.new(obj).should == Pathname.new('/')
+  end
 end
 
