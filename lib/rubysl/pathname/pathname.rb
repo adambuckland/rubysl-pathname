@@ -213,7 +213,12 @@ class Pathname
   # If +path+ contains a NUL character (<tt>\0</tt>), an ArgumentError is raised.
   #
   def initialize(path)
-    path = path.__send__(TO_PATH) if path.respond_to? TO_PATH
+    if path.respond_to? TO_PATH
+      path = path.__send__(TO_PATH)
+    elsif path.respond_to? :to_str
+      path = path.__send__(:to_str)
+    end
+
     @path = path.dup
 
     if /\0/ =~ @path
