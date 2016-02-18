@@ -1001,6 +1001,8 @@ class Pathname    # * Find *
   # Pathname#find is an iterator to traverse a directory tree in a depth first
   # manner.  It yields a Pathname for each file under "this" directory.
   #
+  # Returns an Enumerator if no block is given.
+  #
   # Since it is implemented by <tt>find.rb</tt>, <tt>Find.prune</tt> can be used
   # to control the traverse.
   #
@@ -1008,6 +1010,7 @@ class Pathname    # * Find *
   # current directory, not <tt>./</tt>.
   #
   def find(&block) # :yield: pathname
+    return to_enum(__method__) unless block_given?
     require 'find'
     if @path == '.'
       Find.find(@path) {|f| yield self.class.new(f.sub(%r{\A\./}, '')) }
